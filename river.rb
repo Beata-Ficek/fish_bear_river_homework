@@ -2,38 +2,20 @@ require_relative("fish")
 
 class River
 
-  attr_reader :name, :fish
-
-  def initialize(name, fish)
-
+  def initialize(name, fishes)
     @name = name
-    @fish = fish
-
+    @fishes = fishes
   end
 
-# def add_fish(fish)
-#   @fish << fish
-# end
+  def get_name
+    @name
+  end
 
-# def has_fish?(fish)
-#   return @fish.include?(fish)
-# end
+  def number_of_fishes
+    @fishes.size
+  end
 
-
-def fish_count()
-  @fish.length
-end
-
-def add_fish(fish)
-  @fish << fish
-end
-
-def fish_gone(fish)
-  @fish.delete(fish)
-end
-# def pick_up(person)
-#   @passengers << person
-# end
-
-
+  def get_fish
+    @fishes.pop
+  end
 end

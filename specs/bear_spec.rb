@@ -6,35 +6,32 @@ class BearTest < MiniTest::Test
 
 def setup
   @bear = Bear.new("Ed", "polar bear")
-  @river = River.new("Amazon", ["Kasia", "Basia", "Asia"])
+
+  @fish1 = Fish.new("Kasia")
+  @fish2 = Fish.new("Basia")
+  @fish3 = Fish.new("Asia")
+  @river = River.new("Wisla", [@fish1, @fish2, @fish3])
 end
 
 def test_bear_name
   assert_equal("Ed", @bear.name)
 end
 
-def test_bear_type
-  assert_equal("polar bear", @bear.type)
+def test_bear_has_empty_food_array
+  assert_equal(0,@bear.food_count)
 end
 
-def test_stomach_count
-  assert_equal(0, @bear.stomach_count())
+def test_bear_can_take_fish_from_river
+  @bear.take_fish_from_river(@river)
+  assert_equal(1,@bear.food_count)
+  assert_equal(2,@river.number_of_fishes)
 end
 
-def test_bear_eats
-  @bear.add_fish(@kasia)
-  assert_equal(2, @bear.stomach_count())
+def test_bear_cant_take_fish_from_empty_river
+  river = River.new("Wisla", [])
+  @bear.take_fish_from_river(river)
+  assert_equal(0,@bear.food_count)
+  assert_equal(0,river.number_of_fishes)
 end
 
-def test_catch_fish(river)
-  @bear.catch_fish(river)
-  assert_equal(1, @stomach.stomach_count())
-  assert_equal(2, @river.fish_count(@fish))
-end
-# def test_bear_stomach__full
-#   assert_equal(true, @bear.stomach)
-# end
-#
-# def test_bear_stomach__empty
-#   assert_equal(false, @bear.stomach)
 end

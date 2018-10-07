@@ -1,38 +1,27 @@
 require_relative("fish")
-require_relative('river')
+require_relative("river")
 
 class Bear
 
-  attr_reader :name, :type
+  attr_accessor :name, :type
 
-  def initialize(name, type)
+  def initialize(name,type)
     @name = name
     @type = type
-    @stomach = []
+    @food = []
   end
 
-def bear_eats()
-  @stomach.add_fish(@fish)
-end
+  def roar
+    "Roar"
+  end
 
-def stomach_count()
-  @stomach.length
-end
+  def food_count
+    @food.size
+  end
 
-
-# #
-# def bear_full()
-#   while @fish.length > 0
-#     bear.eats(@fish.pop())
-#   end
-# end
-
-def catch_fish(river)
-  @stomach << river.fish.pop
-end
-
-
-
-
+  def take_fish_from_river(river)
+    fish = river.get_fish()
+    @food << fish if !fish.nil?
+  end
 
 end
